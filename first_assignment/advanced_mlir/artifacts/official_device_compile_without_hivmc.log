@@ -1,0 +1,4 @@
+[ERROR] Cannot find hivmc under $PATH
+[ERROR] Failed to run `hivmc --version`.
+[WARNING] Failed to detect hivmc version for backward compatibility
+[ERROR] Cannot find hivmc under $PATH
