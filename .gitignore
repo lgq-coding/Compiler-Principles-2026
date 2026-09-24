@@ -1,0 +1,114 @@
+# Build and output directories
+/build/
+/out/
+/bin/
+/cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+Testing/
+
+# Compiled object and executable files
+*.o
+*.obj
+*.ko
+*.lo
+*.slo
+*.elf
+*.exe
+*.bin
+*.hex
+*.map
+*.d
+*.a.out
+/a.out
+/sysycc
+/sysy-compiler
+
+# Build artifacts kept inside output directories
+/build/**/*.a
+/build/**/*.so
+/out/**/*.a
+/out/**/*.so
+
+# LLVM generated artifacts
+*.bc
+*.profraw
+*.profdata
+
+# Preprocessed source and generated compiler sources
+*.i
+*.ii
+lex.yy.c
+y.tab.c
+y.tab.h
+y.output
+*.tab.c
+*.tab.h
+*.yy.cc
+*.yy.c
+*.interp
+*.tokens
+
+# CMake and dependency files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+compile_commands.json
+
+# Debug and coverage output
+*.gcda
+*.gcno
+*.gcov
+core
+core.*
+
+# Editor and IDE files
+.vscode/
+.idea/
+.clangd/
+.cache/
+*.swp
+*.swo
+*~
+
+# Python tools and virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Temporary and local files
+/tmp/
+/temp/
+*.tmp
+*.temp
+*.bak
+
+# LaTeX intermediate files
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local environment overrides
+.env
+.env.local
