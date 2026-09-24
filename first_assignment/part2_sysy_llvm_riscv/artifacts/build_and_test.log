@@ -1,0 +1,22 @@
+mkdir -p artifacts
+llvm-as sysy_demo.ll -o artifacts/sysy_demo.bc
+llc -march=riscv64 -mattr=+m,+a,+f,+d -filetype=obj artifacts/sysy_demo.bc -o artifacts/sysy_demo.o
+riscv64-unknown-elf-gcc -B/home/liuguoquan/.local/opt/riscv-binutils-2.42/driver-bin/ artifacts/sysy_demo.o -o artifacts/sysy_demo \
+  -L../../lib -lsysy_riscv \
+  -static -mcmodel=medany -Wl,--no-relax,-Ttext=0x90000000
+opt -passes=verify sysy_demo.ll -disable-output
+./run_tests.sh
+PASS n=0
+PASS n=1
+PASS n=3
+PASS n=4
+PASS n=5
+PASS n=10
+file artifacts/sysy_demo > artifacts/executable_info.txt
+riscv64-unknown-elf-readelf -h -A artifacts/sysy_demo \
+  | sed 's/[[:space:]]\+$//' >> artifacts/executable_info.txt
+riscv64-unknown-elf-nm artifacts/sysy_demo \
+  | grep -E ' (main|is_even|gcd|getint|putint|putch)$' \
+  >> artifacts/executable_info.txt
+riscv64-unknown-elf-objdump -d artifacts/sysy_demo > artifacts/disassembly.txt
+./environment.sh > artifacts/environment.txt

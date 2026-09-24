@@ -105,6 +105,10 @@ venv/
 *.snm
 *.vrb
 
+# First-assignment generated binaries and compiler disassembly
+/first_assignment/part2_sysy_llvm_riscv/artifacts/sysy_demo
+/first_assignment/part2_sysy_llvm_riscv/artifacts/disassembly.txt
+
 # Operating system files
 .DS_Store
 Thumbs.db

@@ -1,0 +1,59 @@
+const int BASE = 3;
+const int FACTOR = 2;
+
+int is_even(int x)
+{
+    if (x % 2 == 0) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+int gcd(int a, int b)
+{
+    while (b != 0) {
+        int t = a % b;
+        a = b;
+        b = t;
+    }
+    return a;
+}
+
+int main()
+{
+    int n = getint();
+    int i = 1;
+    int sum = 0;
+
+    while (i <= n) {
+        if (i == 4) {
+            i = i + 1;
+            continue;
+        }
+
+        if (i == 6) {
+            break;
+        }
+
+        if (i > 0 && is_even(i)) {
+            sum = sum + i;
+        }
+
+        i = i + 1;
+    }
+
+    int x = n + BASE;
+    int y = n * FACTOR + 1;
+    int mixed = (x + y) * 2 - (x / 2) + (y % 3);
+    int g = gcd(x, y);
+
+    putint(sum);
+    putch(10);
+    putint(mixed);
+    putch(10);
+    putint(g);
+    putch(10);
+
+    return 0;
+}
