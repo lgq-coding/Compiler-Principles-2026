@@ -45,7 +45,7 @@ else
     echo "missing virtual environment: $VENV_PYTHON"
 fi
 
-echo "== hivmc =="
+echo "== optional hivmc =="
 if command -v hivmc >/dev/null 2>&1; then
     command -v hivmc
     hivmc --version | head -n 1
@@ -53,7 +53,7 @@ else
     echo "missing"
 fi
 
-echo "== CANN =="
+echo "== optional CANN =="
 if [[ -n "${ASCEND_HOME_PATH:-}" ]]; then
     echo "ASCEND_HOME_PATH=$ASCEND_HOME_PATH"
 elif [[ -d /usr/local/Ascend ]]; then
@@ -62,7 +62,7 @@ else
     echo "missing"
 fi
 
-echo "== NPU device nodes =="
+echo "== optional NPU device nodes =="
 if compgen -G '/dev/davinci*' >/dev/null; then
     ls -l /dev/davinci*
 else

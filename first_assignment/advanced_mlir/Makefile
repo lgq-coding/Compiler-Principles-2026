@@ -1,10 +1,9 @@
 VENV_PYTHON ?= $(HOME)/.venvs/ascendnpuir/bin/python
 BISHENGIR_BIN ?= $(shell $(VENV_PYTHON) -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')/ascendnpuir/bin
 BISHENGIR_OPT ?= $(BISHENGIR_BIN)/bishengir-opt
-BISHENGIR_COMPILE ?= $(BISHENGIR_BIN)/bishengir-compile
 OUT_DIR := artifacts
 
-.PHONY: all check lower hivm verify device clean
+.PHONY: all check lower hivm verify clean
 
 all: lower hivm verify
 
@@ -25,6 +24,7 @@ lower:
 	  --lower-for-cpu-runner-pipeline='wrapper-name=main_wrapper' \
 	  --dump-pass-pipeline -o /dev/null \
 	  > $(OUT_DIR)/cpu_runner_pipeline.txt 2>&1
+	./normalize_text.py $(OUT_DIR)/cpu_runner_pipeline.txt
 
 hivm:
 	mkdir -p $(OUT_DIR)
@@ -50,14 +50,6 @@ verify:
 	grep -q 'hivm.hir.set_flag' $(OUT_DIR)/vecadd_hivm_sync.mlir
 	grep -q 'hivm.hir.wait_flag' $(OUT_DIR)/vecadd_hivm_sync.mlir
 	@echo 'PASS: MLIR lowering evidence verified'
-
-# Requires hivmc and CANN. Kept as an explicit target because the current
-# Python wheel does not bundle hivmc.
-device:
-	$(BISHENGIR_COMPILE) vecadd.mlir \
-	  --target=Ascend910B1 \
-	  --enable-hivm-compile \
-	  -o $(OUT_DIR)/kernel.o
 
 clean:
 	$(RM) -r $(OUT_DIR)

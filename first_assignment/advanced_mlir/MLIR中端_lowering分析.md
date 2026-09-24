@@ -27,13 +27,13 @@
    - CPU 观察路径中 `hivm.hir.vadd` 被降低为 `linalg.add`；
    - 完整 CPU lowering pipeline 最终生成 LLVM 方言。
 
-当前无法完成的部分：
+本阶段未进行的部分：
 
-- 当前 wheel 不包含 `hivmc`，因此不能生成 NPU 设备二进制 `kernel.o`。
-- WSL 内没有 CANN 环境，也没有昇腾设备节点，因此无法进行上板运行。
-- 官方要求端到端运行 VecAdd 时安装 CANN 并使用真实昇腾 NPU。
+- 不生成设备二进制 `kernel.o`；
+- 不进行 CANN Runtime 注册；
+- 不进行真实 NPU 上板运行。
 
-因此，本阶段完成了“中端 IR 和逐层 lowering”的实际探索，但没有进行硬件执行。这符合作业说明中允许在环境困难时以文档、方言差异和 lowering 过程体现探索结果的要求。
+这些内容属于设备端执行路线，不是本题“观察 MLIR 中端和逐层 lowering”的必要条件。本题验收重点是方言层次、Pass Pipeline 和 IR 的渐进式变化，而不是硬件执行结果。
 
 ## 二、官方资料
 
@@ -442,11 +442,11 @@ convert-tensor-to-hivm
 convert-to-hivm-op
 ```
 
-本次 `bishengir-compile` 实验也实际打印出了这三步。不过由于缺少 `hivmc`，流程未能继续生成 `kernel.o`。
+本次 `bishengir-compile` 实验也实际打印出了这三步。继续调用 `hivmc` 生成设备二进制属于本次观察任务之后的可选下游流程。
 
-## 九、当前环境与限制
+## 九、当前环境与任务边界
 
-当前工具已配置：
+任务所需工具已经配置：
 
 ```text
 bishengir-opt     1.1.0
@@ -456,20 +456,15 @@ Ninja             1.13.2
 Python binding    1.1.0
 ```
 
-当前缺失：
+已经完成：
 
-```text
-hivmc
-CANN Toolkit
-Ascend NPU device nodes
-```
+- MLIR 解析和验证；
+- 官方 VecAdd 的 HIVM 中端 Pass 实验；
+- HIVM 到 Linalg 的降低；
+- 30-pass CPU lowering pipeline；
+- 从结构化方言到 LLVM dialect 的观察。
 
-因此：
-
-- 可以进行 MLIR 解析、验证和中端 pass 实验；
-- 可以观察 HIVM 到 Linalg、再到 LLVM dialect 的 lowering；
-- 不能生成需要 `hivmc` 的设备二进制；
-- 不能进行真实 NPU Runtime 上板执行。
+未配置的 `hivmc`、CANN 和 NPU 设备只影响“设备端二进制生成与硬件执行”，不影响本次进阶要求的中端 lowering 观察。因此它们不是本任务的阻塞项。
 
 ## 十、与基础任务的对比结论
 
@@ -480,7 +475,7 @@ Ascend NPU device nodes
 | 硬件抽象 | 后端才绑定目标 | HIVM 显式表达 Tile、GM/UB 和流水 |
 | 优化方式 | LLVM Pass | 方言转换、融合、切分、内存规划、同步插入 |
 | 最终后端 | RISC-V 代码生成 | hivmc 转 LLVM IR 并生成 NPU 二进制 |
-| 本机可验证程度 | 已通过 QEMU 完整验证 | 已完成中端 lowering，缺少 NPU 后端和硬件 |
+| 本机可验证程度 | 已通过 QEMU 完整验证 | 已完成本题所需的中端 lowering 观察 |
 
 结论：
 

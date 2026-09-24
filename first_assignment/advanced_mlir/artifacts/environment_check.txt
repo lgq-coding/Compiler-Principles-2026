@@ -17,9 +17,9 @@ Release build
 == Python binding ==
 version: 1.1.0
 module: /home/liuguoquan/.venvs/ascendnpuir/lib/python3.12/site-packages/ascendnpuir/__init__.py
-== hivmc ==
+== optional hivmc ==
 missing
-== CANN ==
+== optional CANN ==
 missing
-== NPU device nodes ==
+== optional NPU device nodes ==
 missing

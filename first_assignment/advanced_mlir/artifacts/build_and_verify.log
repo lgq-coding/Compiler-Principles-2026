@@ -11,6 +11,7 @@ mkdir -p artifacts
   --lower-for-cpu-runner-pipeline='wrapper-name=main_wrapper' \
   --dump-pass-pipeline -o /dev/null \
   > artifacts/cpu_runner_pipeline.txt 2>&1
+./normalize_text.py artifacts/cpu_runner_pipeline.txt
 mkdir -p artifacts
 /home/liuguoquan/.venvs/ascendnpuir/lib/python3.12/site-packages/ascendnpuir/bin/bishengir-opt vecadd.mlir \
   --hivm-infer-func-core-type \

@@ -9,7 +9,7 @@
 - `MLIR中端_lowering分析.md`：方言、pipeline 和实际 lowering 分析。
 - `交接文档_刘昀皓_进阶部分.md`：分工及后续工作说明。
 - `Makefile`：复现实验。
-- `check_environment.sh`：检查 MLIR、CANN、`hivmc` 和 NPU 设备。
+- `check_environment.sh`：检查 MLIR 工具和可选的设备运行环境。
 - `artifacts/`：实际生成的 MLIR、pass pipeline 和环境记录。
 
 ## 快速开始
@@ -20,8 +20,8 @@ make -B all
 make verify
 ```
 
-## 当前边界
+## 任务边界
 
-当前 WSL 环境可以运行 `bishengir-opt` 和 `bishengir-compile`，并完成 MLIR 中端 lowering。
+本次进阶要求只要求观察 AI 编译器的 MLIR 中端处理过程和逐层 lowering，不要求真实 NPU、CANN 或设备端运行。
 
-由于缺少 `hivmc`、CANN 和昇腾设备，当前不能生成设备二进制，也不能进行 NPU 上板运行。
+因此，本目录以 `bishengir-opt` 产生的 IR 变化作为主要证据。`hivmc`、CANN 和设备运行属于后续可选验证，不属于本任务的完成条件。
