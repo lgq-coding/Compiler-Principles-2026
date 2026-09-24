@@ -1,0 +1,38 @@
+main ()
+{
+  int D.2572;
+
+  {
+    int a;
+    int b;
+    int i;
+    int n;
+    int t;
+
+    n = getint ();
+    a = 0;
+    b = 1;
+    i = 1;
+    putint (a);
+    putch (10);
+    putint (b);
+    putch (10);
+    goto <D.2569>;
+    <D.2568>:
+    t = b;
+    b = a + b;
+    putint (b);
+    putch (10);
+    a = t;
+    i = i + 1;
+    <D.2569>:
+    if (i < n) goto <D.2568>; else goto <D.2570>;
+    <D.2570>:
+    D.2572 = 0;
+    return D.2572;
+  }
+  D.2572 = 0;
+  return D.2572;
+}
+
+

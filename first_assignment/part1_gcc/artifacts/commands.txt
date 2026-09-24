@@ -1,0 +1,15 @@
+# 实际执行命令
+
+工作目录：`first_assignment/part1_gcc`
+
+```bash
+make -B all dumps toolchain
+```
+
+该命令依次完成：
+
+1. `riscv64-unknown-elf-gcc -E fib.c -o artifacts/fib.i`
+2. `riscv64-unknown-elf-gcc -S -O0 -g -fno-pic -mcmodel=medany fib.c -o artifacts/fib.s`
+3. `riscv64-unknown-elf-gcc -S -O2 -fno-pic -mcmodel=medany fib.c -o artifacts/fib.O2.s`
+4. 使用 GCC 的 dump 选项生成 Tree、GIMPLE 和 RTL 中间表示。
+5. 记录 RISC-V GCC 目标架构、ABI 和多库目录。

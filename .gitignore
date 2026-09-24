@@ -40,6 +40,7 @@ Testing/
 # Preprocessed source and generated compiler sources
 *.i
 *.ii
+!first_assignment/part1_gcc/artifacts/fib.i
 lex.yy.c
 y.tab.c
 y.tab.h

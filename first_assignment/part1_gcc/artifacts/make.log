@@ -1,0 +1,16 @@
+mkdir -p artifacts
+riscv64-unknown-elf-gcc -E  fib.c -o artifacts/fib.i
+riscv64-unknown-elf-gcc -S  -O0 -g -fno-pic -mcmodel=medany fib.c -o artifacts/fib.s
+riscv64-unknown-elf-gcc -S  -O2 -fno-pic -mcmodel=medany fib.c -o artifacts/fib.O2.s
+riscv64-unknown-elf-gcc  -O0 -g -fno-pic -mcmodel=medany -fdump-tree-original -S fib.c -o /dev/null
+mv fib.c.*t.original artifacts/fib.c.original
+riscv64-unknown-elf-gcc  -O0 -g -fno-pic -mcmodel=medany -fdump-tree-gimple -S fib.c -o /dev/null
+mv fib.c.*t.gimple artifacts/fib.c.gimple
+riscv64-unknown-elf-gcc  -O0 -g -fno-pic -mcmodel=medany -fdump-rtl-expand -S fib.c -o /dev/null
+mv fib.c.*r.expand artifacts/fib.c.rtl-expand
+riscv64-unknown-elf-gcc  -O0 -g -fno-pic -mcmodel=medany -fdump-rtl-final -S fib.c -o /dev/null
+mv fib.c.*r.final artifacts/fib.c.rtl-final
+riscv64-unknown-elf-gcc --version > artifacts/toolchain.txt
+riscv64-unknown-elf-gcc -dumpmachine >> artifacts/toolchain.txt
+riscv64-unknown-elf-gcc -print-multi-directory >> artifacts/toolchain.txt
+riscv64-unknown-elf-gcc -print-libgcc-file-name >> artifacts/toolchain.txt
