@@ -1,0 +1,137 @@
+
+artifacts/sysy_demo_asm.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <is_even>:
+   0:	4289                	li	t0,2
+   2:	0255633b          	remw	t1,a0,t0
+   6:	00133513          	seqz	a0,t1
+   a:	8082                	ret
+
+000000000000000c <gcd>:
+   c:	c591                	beqz	a1,18 <.L_gcd_end>
+			c: R_RISCV_RVC_BRANCH	.L_gcd_end
+   e:	02b562bb          	remw	t0,a0,a1
+  12:	852e                	mv	a0,a1
+  14:	8596                	mv	a1,t0
+  16:	bfdd                	j	c <gcd>
+			16: R_RISCV_RVC_JUMP	.L_gcd_cond
+
+0000000000000018 <.L_gcd_end>:
+  18:	8082                	ret
+
+000000000000001a <main>:
+  1a:	7139                	addi	sp,sp,-64
+  1c:	fc06                	sd	ra,56(sp)
+  1e:	f826                	sd	s1,48(sp)
+  20:	f44a                	sd	s2,40(sp)
+  22:	f04e                	sd	s3,32(sp)
+  24:	ec52                	sd	s4,24(sp)
+  26:	e856                	sd	s5,16(sp)
+  28:	e45a                	sd	s6,8(sp)
+  2a:	00000097          	auipc	ra,0x0
+			2a: R_RISCV_CALL_PLT	getint
+			2a: R_RISCV_RELAX	*ABS*
+  2e:	000080e7          	jalr	ra # 2a <main+0x10>
+  32:	84aa                	mv	s1,a0
+  34:	4905                	li	s2,1
+  36:	4981                	li	s3,0
+
+0000000000000038 <.L_main_while_cond>:
+  38:	0009029b          	sext.w	t0,s2
+  3c:	0004831b          	sext.w	t1,s1
+  40:	02534c63          	blt	t1,t0,78 <.L_main_while_end>
+			40: R_RISCV_BRANCH	.L_main_while_end
+  44:	4291                	li	t0,4
+  46:	0009031b          	sext.w	t1,s2
+  4a:	00531463          	bne	t1,t0,52 <.L_main_not_4>
+			4a: R_RISCV_BRANCH	.L_main_not_4
+  4e:	2905                	addiw	s2,s2,1
+  50:	b7e5                	j	38 <.L_main_while_cond>
+			50: R_RISCV_RVC_JUMP	.L_main_while_cond
+
+0000000000000052 <.L_main_not_4>:
+  52:	4299                	li	t0,6
+  54:	0009031b          	sext.w	t1,s2
+  58:	02530063          	beq	t1,t0,78 <.L_main_while_end>
+			58: R_RISCV_BRANCH	.L_main_while_end
+  5c:	0009031b          	sext.w	t1,s2
+  60:	00605a63          	blez	t1,74 <.L_main_if_end>
+			60: R_RISCV_BRANCH	.L_main_if_end
+  64:	854a                	mv	a0,s2
+  66:	00000097          	auipc	ra,0x0
+			66: R_RISCV_CALL_PLT	is_even
+			66: R_RISCV_RELAX	*ABS*
+  6a:	000080e7          	jalr	ra # 66 <.L_main_not_4+0x14>
+  6e:	c119                	beqz	a0,74 <.L_main_if_end>
+			6e: R_RISCV_RVC_BRANCH	.L_main_if_end
+  70:	012989bb          	addw	s3,s3,s2
+
+0000000000000074 <.L_main_if_end>:
+  74:	2905                	addiw	s2,s2,1
+  76:	b7c9                	j	38 <.L_main_while_cond>
+			76: R_RISCV_RVC_JUMP	.L_main_while_cond
+
+0000000000000078 <.L_main_while_end>:
+  78:	00348a1b          	addiw	s4,s1,3
+  7c:	4289                	li	t0,2
+  7e:	0254833b          	mulw	t1,s1,t0
+  82:	00130a9b          	addiw	s5,t1,1
+  86:	015a02bb          	addw	t0,s4,s5
+  8a:	4309                	li	t1,2
+  8c:	0262833b          	mulw	t1,t0,t1
+  90:	4289                	li	t0,2
+  92:	025a43bb          	divw	t2,s4,t0
+  96:	428d                	li	t0,3
+  98:	025aee3b          	remw	t3,s5,t0
+  9c:	407302bb          	subw	t0,t1,t2
+  a0:	01c28b3b          	addw	s6,t0,t3
+  a4:	8552                	mv	a0,s4
+  a6:	85d6                	mv	a1,s5
+  a8:	00000097          	auipc	ra,0x0
+			a8: R_RISCV_CALL_PLT	gcd
+			a8: R_RISCV_RELAX	*ABS*
+  ac:	000080e7          	jalr	ra # a8 <.L_main_while_end+0x30>
+  b0:	8a2a                	mv	s4,a0
+  b2:	854e                	mv	a0,s3
+  b4:	00000097          	auipc	ra,0x0
+			b4: R_RISCV_CALL_PLT	putint
+			b4: R_RISCV_RELAX	*ABS*
+  b8:	000080e7          	jalr	ra # b4 <.L_main_while_end+0x3c>
+  bc:	4529                	li	a0,10
+  be:	00000097          	auipc	ra,0x0
+			be: R_RISCV_CALL_PLT	putch
+			be: R_RISCV_RELAX	*ABS*
+  c2:	000080e7          	jalr	ra # be <.L_main_while_end+0x46>
+  c6:	855a                	mv	a0,s6
+  c8:	00000097          	auipc	ra,0x0
+			c8: R_RISCV_CALL_PLT	putint
+			c8: R_RISCV_RELAX	*ABS*
+  cc:	000080e7          	jalr	ra # c8 <.L_main_while_end+0x50>
+  d0:	4529                	li	a0,10
+  d2:	00000097          	auipc	ra,0x0
+			d2: R_RISCV_CALL_PLT	putch
+			d2: R_RISCV_RELAX	*ABS*
+  d6:	000080e7          	jalr	ra # d2 <.L_main_while_end+0x5a>
+  da:	8552                	mv	a0,s4
+  dc:	00000097          	auipc	ra,0x0
+			dc: R_RISCV_CALL_PLT	putint
+			dc: R_RISCV_RELAX	*ABS*
+  e0:	000080e7          	jalr	ra # dc <.L_main_while_end+0x64>
+  e4:	4529                	li	a0,10
+  e6:	00000097          	auipc	ra,0x0
+			e6: R_RISCV_CALL_PLT	putch
+			e6: R_RISCV_RELAX	*ABS*
+  ea:	000080e7          	jalr	ra # e6 <.L_main_while_end+0x6e>
+  ee:	4501                	li	a0,0
+  f0:	70e2                	ld	ra,56(sp)
+  f2:	74c2                	ld	s1,48(sp)
+  f4:	7922                	ld	s2,40(sp)
+  f6:	7982                	ld	s3,32(sp)
+  f8:	6a62                	ld	s4,24(sp)
+  fa:	6ac2                	ld	s5,16(sp)
+  fc:	6b22                	ld	s6,8(sp)
+  fe:	6121                	addi	sp,sp,64
+ 100:	8082                	ret
