@@ -39,7 +39,7 @@ try_optimize_cfg iteration 2
 (note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
 (call_insn 5 2 6 2 (parallel [
             (set (reg:DI 10 a0)
-                (call (mem:SI (symbol_ref:DI ("getint") [flags 0x41]  <function_decl 0x76cde85d9200 getint>) [0 getint S4 A32])
+                (call (mem:SI (symbol_ref:DI ("getint") [flags 0x41]  <function_decl 0x7a9adb7d9200 getint>) [0 getint S4 A32])
                     (const_int 0 [0])))
             (clobber (reg:SI 1 ra))
         ]) "fib.c":11:9 -1
@@ -78,7 +78,7 @@ try_optimize_cfg iteration 2
         (reg:DI 139)) "fib.c":17:5 -1
      (nil))
 (call_insn 15 14 16 2 (parallel [
-            (call (mem:SI (symbol_ref:DI ("putint") [flags 0x41]  <function_decl 0x76cde85d9300 putint>) [0 putint S4 A32])
+            (call (mem:SI (symbol_ref:DI ("putint") [flags 0x41]  <function_decl 0x7a9adb7d9300 putint>) [0 putint S4 A32])
                 (const_int 0 [0]))
             (clobber (reg:SI 1 ra))
         ]) "fib.c":17:5 -1
@@ -89,7 +89,7 @@ try_optimize_cfg iteration 2
         (const_int 10 [0xa])) "fib.c":18:5 -1
      (nil))
 (call_insn 17 16 18 2 (parallel [
-            (call (mem:SI (symbol_ref:DI ("putch") [flags 0x41]  <function_decl 0x76cde85d9400 putch>) [0 putch S4 A32])
+            (call (mem:SI (symbol_ref:DI ("putch") [flags 0x41]  <function_decl 0x7a9adb7d9400 putch>) [0 putch S4 A32])
                 (const_int 0 [0]))
             (clobber (reg:SI 1 ra))
         ]) "fib.c":18:5 -1
@@ -104,7 +104,7 @@ try_optimize_cfg iteration 2
         (reg:DI 140)) "fib.c":19:5 -1
      (nil))
 (call_insn 20 19 21 2 (parallel [
-            (call (mem:SI (symbol_ref:DI ("putint") [flags 0x41]  <function_decl 0x76cde85d9300 putint>) [0 putint S4 A32])
+            (call (mem:SI (symbol_ref:DI ("putint") [flags 0x41]  <function_decl 0x7a9adb7d9300 putint>) [0 putint S4 A32])
                 (const_int 0 [0]))
             (clobber (reg:SI 1 ra))
         ]) "fib.c":19:5 -1
@@ -115,7 +115,7 @@ try_optimize_cfg iteration 2
         (const_int 10 [0xa])) "fib.c":20:5 -1
      (nil))
 (call_insn 22 21 23 2 (parallel [
-            (call (mem:SI (symbol_ref:DI ("putch") [flags 0x41]  <function_decl 0x76cde85d9400 putch>) [0 putch S4 A32])
+            (call (mem:SI (symbol_ref:DI ("putch") [flags 0x41]  <function_decl 0x7a9adb7d9400 putch>) [0 putch S4 A32])
                 (const_int 0 [0]))
             (clobber (reg:SI 1 ra))
         ]) "fib.c":20:5 -1
@@ -161,7 +161,7 @@ try_optimize_cfg iteration 2
         (reg:DI 145)) "fib.c":26:9 -1
      (nil))
 (call_insn 34 33 35 4 (parallel [
-            (call (mem:SI (symbol_ref:DI ("putint") [flags 0x41]  <function_decl 0x76cde85d9300 putint>) [0 putint S4 A32])
+            (call (mem:SI (symbol_ref:DI ("putint") [flags 0x41]  <function_decl 0x7a9adb7d9300 putint>) [0 putint S4 A32])
                 (const_int 0 [0]))
             (clobber (reg:SI 1 ra))
         ]) "fib.c":26:9 -1
@@ -172,7 +172,7 @@ try_optimize_cfg iteration 2
         (const_int 10 [0xa])) "fib.c":27:9 -1
      (nil))
 (call_insn 36 35 37 4 (parallel [
-            (call (mem:SI (symbol_ref:DI ("putch") [flags 0x41]  <function_decl 0x76cde85d9400 putch>) [0 putch S4 A32])
+            (call (mem:SI (symbol_ref:DI ("putch") [flags 0x41]  <function_decl 0x7a9adb7d9400 putch>) [0 putch S4 A32])
                 (const_int 0 [0]))
             (clobber (reg:SI 1 ra))
         ]) "fib.c":27:9 -1
