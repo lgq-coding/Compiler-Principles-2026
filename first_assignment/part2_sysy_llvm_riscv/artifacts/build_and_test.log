@@ -4,19 +4,31 @@ llc -march=riscv64 -mattr=+m,+a,+f,+d -filetype=obj artifacts/sysy_demo.bc -o ar
 riscv64-unknown-elf-gcc -B/home/liuguoquan/.local/opt/riscv-binutils-2.42/driver-bin/ artifacts/sysy_demo.o -o artifacts/sysy_demo \
   -L../../lib -lsysy_riscv \
   -static -mcmodel=medany -Wl,--no-relax,-Ttext=0x90000000
+riscv64-unknown-elf-gcc -B/home/liuguoquan/.local/opt/riscv-binutils-2.42/driver-bin/ -march=rv64imafdc_zicsr_zmmul -c sysy_demo_asm.s -o artifacts/sysy_demo_asm.o
+riscv64-unknown-elf-gcc -B/home/liuguoquan/.local/opt/riscv-binutils-2.42/driver-bin/ artifacts/sysy_demo_asm.o -o artifacts/sysy_demo_asm \
+  -L../../lib -lsysy_riscv \
+  -static -mcmodel=medany -Wl,--no-relax,-Ttext=0x90000000
 opt -passes=verify sysy_demo.ll -disable-output
-./run_tests.sh
+mkdir -p artifacts/tests
+TEST_ARTIFACT_DIR=artifacts/tests ./run_tests.sh artifacts/sysy_demo \
+  > artifacts/tests/reference_results.txt
+cat artifacts/tests/reference_results.txt
 PASS n=0
 PASS n=1
 PASS n=3
 PASS n=4
 PASS n=5
 PASS n=10
-file artifacts/sysy_demo > artifacts/executable_info.txt
-riscv64-unknown-elf-readelf -h -A artifacts/sysy_demo \
-  | sed 's/[[:space:]]\+$//' >> artifacts/executable_info.txt
-riscv64-unknown-elf-nm artifacts/sysy_demo \
-  | grep -E ' (main|is_even|gcd|getint|putint|putch)$' \
-  >> artifacts/executable_info.txt
-riscv64-unknown-elf-objdump -d artifacts/sysy_demo > artifacts/disassembly.txt
-./environment.sh > artifacts/environment.txt
+mkdir -p artifacts/tests_asm
+TEST_ARTIFACT_DIR=artifacts/tests_asm ./run_tests.sh artifacts/sysy_demo_asm \
+  > artifacts/tests_asm/results.txt
+cat artifacts/tests_asm/results.txt
+PASS n=0
+PASS n=1
+PASS n=3
+PASS n=4
+PASS n=5
+PASS n=10
+/home/liuguoquan/.local/opt/riscv-binutils-2.42/usr/bin/riscv64-unknown-elf-readelf -h -A -s artifacts/sysy_demo_asm.o \
+  | sed 's/[[:space:]]\+$//' > artifacts/sysy_demo_asm_readelf.txt
+/home/liuguoquan/.local/opt/riscv-binutils-2.42/usr/bin/riscv64-unknown-elf-objdump -dr artifacts/sysy_demo_asm.o > artifacts/sysy_demo_asm_objdump.txt
