@@ -1,0 +1,10 @@
+== riscv gcc ==
+riscv64-unknown-elf-gcc (SiFive GCC-Metal 10.2.0-2020.12.8) 10.2.0
+riscv64-unknown-elf
+rv64imafdc/lp64d
+== riscv assembler ==
+GNU assembler (SiFive Binutils-Metal 2.35.0-2020.12.8) 2.35
+== riscv linker ==
+GNU ld (SiFive Binutils-Metal 2.35.0-2020.12.8) 2.35
+== qemu ==
+qemu-riscv64 version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.16)

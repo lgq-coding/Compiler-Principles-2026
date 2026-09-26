@@ -1,15 +1,18 @@
-# 实际执行命令
+# 第一部分完整复现命令
 
 工作目录：`first_assignment/part1_gcc`
 
 ```bash
-make -B all dumps toolchain
+make -B all verify inspect environment
 ```
 
 该命令依次完成：
 
-1. `riscv64-unknown-elf-gcc -E fib.c -o artifacts/fib.i`
-2. `riscv64-unknown-elf-gcc -S -O0 -g -fno-pic -mcmodel=medany fib.c -o artifacts/fib.s`
-3. `riscv64-unknown-elf-gcc -S -O2 -fno-pic -mcmodel=medany fib.c -o artifacts/fib.O2.s`
-4. 使用 GCC 的 dump 选项生成 Tree、GIMPLE 和 RTL 中间表示。
-5. 记录 RISC-V GCC 目标架构、ABI 和多库目录。
+1. 预处理与 RISC-V 汇编生成；
+2. `-O0` 与 `-O2` 汇编对比；
+3. Tree、GIMPLE、RTL dump；
+4. `fib.s -> fib.o`；
+5. 使用 SiFive 工具链重新构建 SysY 运行库；
+6. `fib.o + libsysy_riscv_sifive.a -> fib`；
+7. `qemu-riscv64` 运行 4 组测试；
+8. 保存目标文件和可执行文件检查信息。

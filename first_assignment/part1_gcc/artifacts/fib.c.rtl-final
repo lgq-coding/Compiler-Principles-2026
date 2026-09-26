@@ -49,7 +49,7 @@ Dataflow summary:
 (note 2 69 5 NOTE_INSN_FUNCTION_BEG)
 (call_insn 5 2 6 (parallel [
             (set (reg:DI 10 a0)
-                (call (mem:SI (symbol_ref:DI ("getint") [flags 0x41]  <function_decl 0x7676fb5b8200 getint>) [0 getint S4 A32])
+                (call (mem:SI (symbol_ref:DI ("getint") [flags 0x41]  <function_decl 0x70af9c3d9200 getint>) [0 getint S4 A32])
                     (const_int 0 [0])))
             (clobber (reg:SI 1 ra))
         ]) "fib.c":11:9 312 {call_value_internal}
@@ -88,7 +88,7 @@ Dataflow summary:
         (reg:DI 15 a5 [139])) "fib.c":17:5 181 {*movdi_64bit}
      (nil))
 (call_insn 15 14 16 (parallel [
-            (call (mem:SI (symbol_ref:DI ("putint") [flags 0x41]  <function_decl 0x7676fb5b8300 putint>) [0 putint S4 A32])
+            (call (mem:SI (symbol_ref:DI ("putint") [flags 0x41]  <function_decl 0x70af9c3d9300 putint>) [0 putint S4 A32])
                 (const_int 0 [0]))
             (clobber (reg:SI 1 ra))
         ]) "fib.c":17:5 311 {call_internal}
@@ -99,7 +99,7 @@ Dataflow summary:
         (const_int 10 [0xa])) "fib.c":18:5 181 {*movdi_64bit}
      (nil))
 (call_insn 17 16 18 (parallel [
-            (call (mem:SI (symbol_ref:DI ("putch") [flags 0x41]  <function_decl 0x7676fb5b8400 putch>) [0 putch S4 A32])
+            (call (mem:SI (symbol_ref:DI ("putch") [flags 0x41]  <function_decl 0x70af9c3d9400 putch>) [0 putch S4 A32])
                 (const_int 0 [0]))
             (clobber (reg:SI 1 ra))
         ]) "fib.c":18:5 311 {call_internal}
@@ -114,7 +114,7 @@ Dataflow summary:
         (reg:DI 15 a5 [140])) "fib.c":19:5 181 {*movdi_64bit}
      (nil))
 (call_insn 20 19 21 (parallel [
-            (call (mem:SI (symbol_ref:DI ("putint") [flags 0x41]  <function_decl 0x7676fb5b8300 putint>) [0 putint S4 A32])
+            (call (mem:SI (symbol_ref:DI ("putint") [flags 0x41]  <function_decl 0x70af9c3d9300 putint>) [0 putint S4 A32])
                 (const_int 0 [0]))
             (clobber (reg:SI 1 ra))
         ]) "fib.c":19:5 311 {call_internal}
@@ -125,7 +125,7 @@ Dataflow summary:
         (const_int 10 [0xa])) "fib.c":20:5 181 {*movdi_64bit}
      (nil))
 (call_insn 22 21 61 (parallel [
-            (call (mem:SI (symbol_ref:DI ("putch") [flags 0x41]  <function_decl 0x7676fb5b8400 putch>) [0 putch S4 A32])
+            (call (mem:SI (symbol_ref:DI ("putch") [flags 0x41]  <function_decl 0x70af9c3d9400 putch>) [0 putch S4 A32])
                 (const_int 0 [0]))
             (clobber (reg:SI 1 ra))
         ]) "fib.c":20:5 311 {call_internal}
@@ -171,7 +171,7 @@ Dataflow summary:
         (reg:DI 15 a5 [145])) "fib.c":26:9 181 {*movdi_64bit}
      (nil))
 (call_insn 34 33 35 (parallel [
-            (call (mem:SI (symbol_ref:DI ("putint") [flags 0x41]  <function_decl 0x7676fb5b8300 putint>) [0 putint S4 A32])
+            (call (mem:SI (symbol_ref:DI ("putint") [flags 0x41]  <function_decl 0x70af9c3d9300 putint>) [0 putint S4 A32])
                 (const_int 0 [0]))
             (clobber (reg:SI 1 ra))
         ]) "fib.c":26:9 311 {call_internal}
@@ -182,7 +182,7 @@ Dataflow summary:
         (const_int 10 [0xa])) "fib.c":27:9 181 {*movdi_64bit}
      (nil))
 (call_insn 36 35 37 (parallel [
-            (call (mem:SI (symbol_ref:DI ("putch") [flags 0x41]  <function_decl 0x7676fb5b8400 putch>) [0 putch S4 A32])
+            (call (mem:SI (symbol_ref:DI ("putch") [flags 0x41]  <function_decl 0x70af9c3d9400 putch>) [0 putch S4 A32])
                 (const_int 0 [0]))
             (clobber (reg:SI 1 ra))
         ]) "fib.c":27:9 311 {call_internal}
