@@ -9,25 +9,25 @@ ELF Header:
   Type:                              EXEC (Executable file)
   Machine:                           RISC-V
   Version:                           0x1
-  Entry point address:               0x9000001c
+  Entry point address:               0x900001fc
   Start of program headers:          64 (bytes into file)
-  Start of section headers:          176208 (bytes into file)
+  Start of section headers:          174056 (bytes into file)
   Flags:                             0x5, RVC, double-float ABI
   Size of this header:               64 (bytes)
   Size of program headers:           56 (bytes)
-  Number of program headers:         4
+  Number of program headers:         3
   Size of section headers:           64 (bytes)
   Number of section headers:         23
   Section header string table index: 22
 Attribute Section: riscv
 File Attributes
   Tag_RISCV_stack_align: 16-bytes
-  Tag_RISCV_arch: "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zmmul1p0_zaamo1p0_zalrsc1p0_zca1p0_zcd1p0"
+  Tag_RISCV_arch: "rv64i2p0_m2p0_a2p0_f2p0_d2p0_c2p0"
   Tag_RISCV_priv_spec: 1
   Tag_RISCV_priv_spec_minor: 11
-00000000900000fc T gcd
-0000000090000294 T getint
-00000000900000d8 T is_even
-0000000090000138 T main
-0000000090000422 T putch
-00000000900003f4 T putint
+00000000900002cc T gcd
+00000000900003de T getint
+00000000900002b8 T is_even
+00000000900002ec T main
+00000000900004f0 T putch
+00000000900004de T putint

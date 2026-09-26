@@ -105,9 +105,11 @@ venv/
 *.snm
 *.vrb
 
-# First-assignment generated binaries and compiler disassembly
+# First-assignment generated binaries, runtime archive and compiler disassembly
 /first_assignment/part2_sysy_llvm_riscv/artifacts/sysy_demo
 /first_assignment/part2_sysy_llvm_riscv/artifacts/sysy_demo_asm
+/first_assignment/part2_sysy_llvm_riscv/artifacts/sysy_demo_llvm.s
+/first_assignment/part2_sysy_llvm_riscv/artifacts/sifive-runtime/
 /first_assignment/part2_sysy_llvm_riscv/artifacts/disassembly.txt
 
 # Operating system files

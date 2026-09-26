@@ -10,7 +10,9 @@
 - `sysy_demo.sy`；
 - `tests/input_*.txt`；
 - `tests/expected_*.txt`；
-- `lib/libsysy_riscv.a`。
+- 助教提供的 `lib/sylib.c`。
+
+构建时使用 SiFive GCC 10.2 从 `sylib.c` 重建 `libsysy_riscv_sifive.a`，因此默认链路统一使用 SiFive as 2.35、SiFive ld 2.35 和 LP64D ABI。
 
 ## 构建
 

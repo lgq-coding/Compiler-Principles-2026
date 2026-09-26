@@ -32,7 +32,7 @@ Disassembly of section .text:
   26:	e856                	sd	s5,16(sp)
   28:	e45a                	sd	s6,8(sp)
   2a:	00000097          	auipc	ra,0x0
-			2a: R_RISCV_CALL_PLT	getint
+			2a: R_RISCV_CALL	getint
 			2a: R_RISCV_RELAX	*ABS*
   2e:	000080e7          	jalr	ra # 2a <main+0x10>
   32:	84aa                	mv	s1,a0
@@ -62,7 +62,7 @@ Disassembly of section .text:
 			60: R_RISCV_BRANCH	.L_main_if_end
   64:	854a                	mv	a0,s2
   66:	00000097          	auipc	ra,0x0
-			66: R_RISCV_CALL_PLT	is_even
+			66: R_RISCV_CALL	is_even
 			66: R_RISCV_RELAX	*ABS*
   6a:	000080e7          	jalr	ra # 66 <.L_main_not_4+0x14>
   6e:	c119                	beqz	a0,74 <.L_main_if_end>
@@ -91,38 +91,38 @@ Disassembly of section .text:
   a4:	8552                	mv	a0,s4
   a6:	85d6                	mv	a1,s5
   a8:	00000097          	auipc	ra,0x0
-			a8: R_RISCV_CALL_PLT	gcd
+			a8: R_RISCV_CALL	gcd
 			a8: R_RISCV_RELAX	*ABS*
   ac:	000080e7          	jalr	ra # a8 <.L_main_while_end+0x30>
   b0:	8a2a                	mv	s4,a0
   b2:	854e                	mv	a0,s3
   b4:	00000097          	auipc	ra,0x0
-			b4: R_RISCV_CALL_PLT	putint
+			b4: R_RISCV_CALL	putint
 			b4: R_RISCV_RELAX	*ABS*
   b8:	000080e7          	jalr	ra # b4 <.L_main_while_end+0x3c>
   bc:	4529                	li	a0,10
   be:	00000097          	auipc	ra,0x0
-			be: R_RISCV_CALL_PLT	putch
+			be: R_RISCV_CALL	putch
 			be: R_RISCV_RELAX	*ABS*
   c2:	000080e7          	jalr	ra # be <.L_main_while_end+0x46>
   c6:	855a                	mv	a0,s6
   c8:	00000097          	auipc	ra,0x0
-			c8: R_RISCV_CALL_PLT	putint
+			c8: R_RISCV_CALL	putint
 			c8: R_RISCV_RELAX	*ABS*
   cc:	000080e7          	jalr	ra # c8 <.L_main_while_end+0x50>
   d0:	4529                	li	a0,10
   d2:	00000097          	auipc	ra,0x0
-			d2: R_RISCV_CALL_PLT	putch
+			d2: R_RISCV_CALL	putch
 			d2: R_RISCV_RELAX	*ABS*
   d6:	000080e7          	jalr	ra # d2 <.L_main_while_end+0x5a>
   da:	8552                	mv	a0,s4
   dc:	00000097          	auipc	ra,0x0
-			dc: R_RISCV_CALL_PLT	putint
+			dc: R_RISCV_CALL	putint
 			dc: R_RISCV_RELAX	*ABS*
   e0:	000080e7          	jalr	ra # dc <.L_main_while_end+0x64>
   e4:	4529                	li	a0,10
   e6:	00000097          	auipc	ra,0x0
-			e6: R_RISCV_CALL_PLT	putch
+			e6: R_RISCV_CALL	putch
 			e6: R_RISCV_RELAX	*ABS*
   ea:	000080e7          	jalr	ra # e6 <.L_main_while_end+0x6e>
   ee:	4501                	li	a0,0

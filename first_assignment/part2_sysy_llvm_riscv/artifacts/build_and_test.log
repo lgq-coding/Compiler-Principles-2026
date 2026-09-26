@@ -1,12 +1,17 @@
 mkdir -p artifacts
 llvm-as sysy_demo.ll -o artifacts/sysy_demo.bc
-llc -march=riscv64 -mattr=+m,+a,+f,+d -filetype=obj artifacts/sysy_demo.bc -o artifacts/sysy_demo.o
-riscv64-unknown-elf-gcc -B/home/liuguoquan/.local/opt/riscv-binutils-2.42/driver-bin/ artifacts/sysy_demo.o -o artifacts/sysy_demo \
-  -L../../lib -lsysy_riscv \
+llc -march=riscv64 -mattr=+m,+a,+f,+d -filetype=asm artifacts/sysy_demo.bc -o artifacts/sysy_demo_llvm.s
+./normalize_riscv_asm.py artifacts/sysy_demo_llvm.s
+riscv64-unknown-elf-gcc -c artifacts/sysy_demo_llvm.s -o artifacts/sysy_demo.o
+mkdir -p artifacts/sifive-runtime
+riscv64-unknown-elf-gcc -O2 -mcmodel=medany -fno-pic -I../../lib -c ../../lib/sylib.c -o artifacts/sifive-runtime/sylib.o
+riscv64-unknown-elf-ar rcs artifacts/sifive-runtime/libsysy_riscv_sifive.a artifacts/sifive-runtime/sylib.o
+riscv64-unknown-elf-gcc artifacts/sysy_demo.o -o artifacts/sysy_demo \
+  -Lartifacts/sifive-runtime -lsysy_riscv_sifive \
   -static -mcmodel=medany -Wl,--no-relax,-Ttext=0x90000000
-riscv64-unknown-elf-gcc -B/home/liuguoquan/.local/opt/riscv-binutils-2.42/driver-bin/ -march=rv64imafdc_zicsr_zmmul -c sysy_demo_asm.s -o artifacts/sysy_demo_asm.o
-riscv64-unknown-elf-gcc -B/home/liuguoquan/.local/opt/riscv-binutils-2.42/driver-bin/ artifacts/sysy_demo_asm.o -o artifacts/sysy_demo_asm \
-  -L../../lib -lsysy_riscv \
+riscv64-unknown-elf-gcc -march=rv64imafdc -mabi=lp64d -c sysy_demo_asm.s -o artifacts/sysy_demo_asm.o
+riscv64-unknown-elf-gcc artifacts/sysy_demo_asm.o -o artifacts/sysy_demo_asm \
+  -Lartifacts/sifive-runtime -lsysy_riscv_sifive \
   -static -mcmodel=medany -Wl,--no-relax,-Ttext=0x90000000
 opt -passes=verify sysy_demo.ll -disable-output
 mkdir -p artifacts/tests
@@ -29,6 +34,14 @@ PASS n=3
 PASS n=4
 PASS n=5
 PASS n=10
-/home/liuguoquan/.local/opt/riscv-binutils-2.42/usr/bin/riscv64-unknown-elf-readelf -h -A -s artifacts/sysy_demo_asm.o \
+file artifacts/sysy_demo > artifacts/executable_info.txt
+riscv64-unknown-elf-readelf -h -A artifacts/sysy_demo \
+  | sed 's/[[:space:]]\+$//' >> artifacts/executable_info.txt
+riscv64-unknown-elf-nm artifacts/sysy_demo \
+  | grep -E ' (main|is_even|gcd|getint|putint|putch)$' \
+  >> artifacts/executable_info.txt
+riscv64-unknown-elf-objdump -d artifacts/sysy_demo > artifacts/disassembly.txt
+riscv64-unknown-elf-readelf -h -A -s artifacts/sysy_demo_asm.o \
   | sed 's/[[:space:]]\+$//' > artifacts/sysy_demo_asm_readelf.txt
-/home/liuguoquan/.local/opt/riscv-binutils-2.42/usr/bin/riscv64-unknown-elf-objdump -dr artifacts/sysy_demo_asm.o > artifacts/sysy_demo_asm_objdump.txt
+riscv64-unknown-elf-objdump -dr artifacts/sysy_demo_asm.o > artifacts/sysy_demo_asm_objdump.txt
+./environment.sh > artifacts/environment.txt

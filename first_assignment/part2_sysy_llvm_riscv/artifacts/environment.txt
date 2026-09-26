@@ -7,7 +7,11 @@ Ubuntu LLVM version 18.1.3
 riscv64-unknown-elf-gcc (SiFive GCC-Metal 10.2.0-2020.12.8) 10.2.0
 riscv64-unknown-elf
 rv64imafdc/lp64d
+== riscv assembler ==
+GNU assembler (SiFive Binutils-Metal 2.35.0-2020.12.8) 2.35
 == riscv linker ==
-GNU ld (2.42-1ubuntu1+6) 2.42
+GNU ld (SiFive Binutils-Metal 2.35.0-2020.12.8) 2.35
+== runtime source ==
+675cb4bb667676c33afb3216e8153c3d5f0d550da9375b4081d3d4d8c40392d7  ../../lib/sylib.c
 == qemu ==
 qemu-riscv64 version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.16)

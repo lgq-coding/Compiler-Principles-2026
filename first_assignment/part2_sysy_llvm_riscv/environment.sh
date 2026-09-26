@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-BINUTILS_DIR="${BINUTILS_DIR:-$HOME/.local/opt/riscv-binutils-2.42/driver-bin}"
-
 echo "== llvm-as =="
 llvm-as --version | head -n 1
 echo "== llc =="
@@ -12,7 +10,11 @@ echo "== riscv gcc =="
 riscv64-unknown-elf-gcc --version | head -n 1
 riscv64-unknown-elf-gcc -dumpmachine
 riscv64-unknown-elf-gcc -print-multi-directory
+echo "== riscv assembler =="
+riscv64-unknown-elf-as --version | head -n 1
 echo "== riscv linker =="
-"$BINUTILS_DIR/ld" --version | head -n 1
+riscv64-unknown-elf-ld --version | head -n 1
+echo "== runtime source =="
+sha256sum ../../lib/sylib.c
 echo "== qemu =="
 qemu-riscv64 --version | head -n 1
